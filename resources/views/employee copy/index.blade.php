@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('page-title')
-    {{__('Visa Clients')}}
+    {{__('Manage Employee')}}
 @endsection
 @section('breadcrumb')
     <li class="breadcrumb-item"><a href="{{route('dashboard')}}">{{__('Dashboard')}}</a></li>
@@ -32,28 +32,28 @@
                     <table class="table datatable">
                             <thead>
                             <tr>
-                                {{-- <th>{{__('Employee ID')}}</th> --}}
+                                <th>{{__('Employee ID')}}</th>
                                 <th>{{__('Name')}}</th>
-                                <th>{{__('Passport No.')}}</th>
-                                <th>{{__('Visa Type') }}</th>
-                                <th>{{__('Visa status') }}</th>
-                                <th>{{__('Total Paid') }}</th>
-                                <th>{{__('Total Due') }}</th>
-                                {{-- <th> {{__('Last Login')}}</th> --}}
-                                {{-- <th width="200px">{{__('Action')}}</th> --}}
+                                <th>{{__('Email')}}</th>
+                                <th>{{__('Branch') }}</th>
+                                <th>{{__('Department') }}</th>
+                                <th>{{__('Designation') }}</th>
+                                <th>{{__('Date Of Joining') }}</th>
+                                <th> {{__('Last Login')}}</th>
+                                <th width="200px">{{__('Action')}}</th>
 
                             </tr>
                             </thead>
                             <tbody>
                             @foreach ($employees as $employee)
                                 <tr>
-                                    {{-- <td class="Id">
+                                    <td class="Id">
                                         @can('show employee profile')
                                             <a href="{{route('employee.show',\Illuminate\Support\Facades\Crypt::encrypt($employee->id))}}" class="btn btn-outline-primary">{{ \Auth::user()->employeeIdFormat($employee->employee_id) }}</a>
                                         @else
                                             <a href="#"  class="btn btn-outline-primary">{{ \Auth::user()->employeeIdFormat($employee->employee_id) }}</a>
                                         @endcan
-                                    </td> --}}
+                                    </td>
                                     <td class="font-style">{{ $employee->name }}</td>
                                     <td>{{ $employee->email }}</td>
                                     @if($employee->branch_id)
@@ -71,11 +71,11 @@
                                     @else
                                         <td>-</td>
                                     @endif
-                                    {{-- @if($employee->company_doj)
+                                    @if($employee->company_doj)
                                         <td class="font-style">{{ \Auth::user()->dateFormat($employee->company_doj )}}</td>
                                     @else
                                         <td>-</td>
-                                    @endif --}}
+                                    @endif
                                     <td>
                                         {{ (!empty($employee->user->last_login_at)) ? $employee->user->last_login_at : '-' }}
                                     </td>

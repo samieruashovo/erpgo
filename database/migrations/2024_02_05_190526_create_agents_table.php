@@ -13,11 +13,11 @@ class CreateAgentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('agents', function (Blueprint $table) {
-            $table->id();
-            $table->string('agent_name'); // Add agent_name field
-            $table->timestamps();
-        });
+        // Schema::create('agents', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string('agent_name'); // Add agent_name field
+        //     $table->timestamps();
+        // });
     }
 
     /**

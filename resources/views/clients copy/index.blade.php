@@ -37,10 +37,10 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                         </button>
 
                                         <div class="dropdown-menu dropdown-menu-end">
-                                           {{-- <a href="{{ route('clients.show',$client->id) }}"  class="dropdown-item" data-bs-original-title="{{__('View')}}">--}}
+{{--                                            <a href="{{ route('clients.show',$client->id) }}"  class="dropdown-item" data-bs-original-title="{{__('View')}}">--}}
 {{--                                                <i class="ti ti-eye"></i>--}}
 {{--                                                <span>{{__('Show')}}</span>--}}
-{{--                                            </a> --}}
+{{--                                            </a>--}}
 
                                             @can('edit client')
                                                 <a href="#!" data-size="md" data-url="{{ route('clients.edit',$client->id) }}" data-ajax-popup="true" class="dropdown-item" data-bs-original-title="{{__('Edit Client')}}">
@@ -88,34 +88,36 @@ $profile=\App\Models\Utility::get_file('uploads/avatar');
                                     </div>
                                 </div>
                             </div>
-                            <a href="{{ route('vendorClient.page', ['id' => $client->id]) }}">
                             <div class="card-body full-card">
-                                {{-- <div class="img-fluid rounded-circle card-avatar">
+                                <div class="img-fluid rounded-circle card-avatar">
                                     <img src="{{(!empty($client->avatar))? asset(Storage::url("uploads/avatar/".$client->avatar)): asset(Storage::url("uploads/avatar/avatar.png"))}}" alt="kal" class="img-user wid-80 rounded-circle">
-                                </div> --}}
+                                </div>
                                 <h4 class=" mt-2">{{ $client->name }}</h4>
-                                <h4 class=" mt-2">Company details</h4>
-                                <h4 class=" mt-2">attrachment</h4>
                                 <p></p>
-                     
+                                <div class="row">
+                                    <div class="col-12 col-sm-12">
+                                        <div class="d-grid">
+                                            {{ $client->email }}
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="align-items-center h6 mt-2" data-bs-toggle="tooltip" title="{{__('Last Login')}}">
                                     {{ (!empty($client->last_login_at)) ? $client->last_login_at : '' }}
                                 </div>
                             </div>
-                        </a>
                             <div class="card-footer p-3">
                                 <div class="row">
                                     <div class="col-6">
                                         <h6 class="mb-0"> @if($client->clientDeals)
                                                 {{$client->clientDeals->count()}}
                                             @endif</h6>
-                                        <p class="text-muted text-sm mb-0">{{__('Total Paid')}}</p>
+                                        <p class="text-muted text-sm mb-0">{{__('Deals')}}</p>
                                     </div>
                                     <div class="col-6">
                                         <h6 class="mb-0">@if($client->clientProjects)
                                                 {{ $client->clientProjects->count() }}
                                             @endif</h6>
-                                        <p class="text-muted text-sm mb-0">{{__('Total Due')}}</p>
+                                        <p class="text-muted text-sm mb-0">{{__('Projects')}}</p>
                                     </div>
                                 </div>
                             </div>

@@ -137,6 +137,7 @@ use App\Http\Controllers\ProjectExpenseController;
 use App\Http\Controllers\NepalstePaymnetController;
 use App\Http\Controllers\QuotationController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\VendorClientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -206,6 +207,37 @@ Route::resource('roles', RoleController::class)->middleware(['auth', 'XSS', 'rev
 
 Route::resource('permissions', PermissionController::class)->middleware(['auth', 'XSS', 'revalidate']);
 
+// web.php
+
+// web.php
+
+Route::get('/vendors', function () {
+    return view('agents.index');
+    
+});
+
+Route::get('/vendors', function (Request $request) {
+    // $visaType = $request->input('visa_type');
+    $agent = $request->input('agent');
+
+    // Check the values of the URL parameters
+    if ($agent) {
+        return view('agents.clients');
+    } else {
+        return view('agents.index');
+    }
+});
+
+// Route::post('/agents/store', 'AgentController@store')->name('agents.store');
+Route::middleware('web')->post('/agents/store', 'AgentController@store')->name('agents.store');
+
+
+
+
+Route::get('/vendor-client-page/{id}', [VendorClientController::class, 'vendorClientPage'])->name('vendorClient.page');
+Route::resource('vendor-clients', VendorClientController::class);
+Route::post('vendor-clients', 'VendorClientController@store');
+Route::post('/clients/create', [VendorClientController::class, 'store'])->name('clients.store');
 Route::group(
     [
         'middleware' => [
